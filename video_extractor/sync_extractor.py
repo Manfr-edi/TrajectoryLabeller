@@ -37,7 +37,7 @@ class SynchronizedFrameExtractor:
         subprocess.run(cmd, check=True)
         print("✓ CFR conversion complete\n")
 
-    def normalize_videos(self, video_paths: List[str], temp_dir="cfr_videos"):
+    def normalize_videos(self, video_paths: List[str], temp_dir="../cfr_videos"):
         Path(temp_dir).mkdir(exist_ok=True)
 
         normalized = []
@@ -190,10 +190,17 @@ class SynchronizedFrameExtractor:
 
 
 if __name__ == "__main__":
+    original_videos = [
+        "../data/IMG_0892.MOV",
+        "../data/PXL_20260210.mp4"
+    ]
+
     videos = [
         "../cfr_videos/IMG_0892_CFR.mp4",
         "../cfr_videos/PXL_20260210_CFR.mp4"
     ]
 
     extractor = SynchronizedFrameExtractor()
+    # UNCOMMENT IF YOU NEED TO NORMALIZE VIDEO FREQUENCY
+    #normalized = extractor.normalize_videos(original_videos)
     extractor.full_workflow(videos, duration=10)
